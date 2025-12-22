@@ -36,7 +36,7 @@ Exemple:
 
 def obtain_max(list_numbers):
     return max(list_numbers)
-    pass
+    
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script 
 # Si vols provar el teu codi, descomenta les línies següents i executa l'script

@@ -60,10 +60,9 @@ L'any a comprovar serà '2000', de manera que:
 """
 
 
-def check_leap_year(
-    year):
-    # Write here your code
-    pass
+def check_leap_year(year):
+    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+    
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el

@@ -57,7 +57,7 @@ def line_graph(x, y):
     plt.xlabel("Axis X")
     plt.ylabel("Axis Y")
     plt.grid(True)
-    pass
+    
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script 
 # Si vols provar el teu codi, descomenta les línies següents i executa l'script

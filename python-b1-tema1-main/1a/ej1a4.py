@@ -42,7 +42,7 @@ def count_vowels(text_chain:str):
             contador += 1
 
     return contador
-    pass
+    
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script 
 # Si vols provar el teu codi, descomenta les línies següents i executa l'script

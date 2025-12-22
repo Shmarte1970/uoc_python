@@ -41,7 +41,7 @@ def invert_list(lst):
         return lst
     
     return invert_list(lst[1:]) + [lst[0]]
-    pass
+    
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script

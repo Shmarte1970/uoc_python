@@ -46,7 +46,7 @@ def is_palindrome(word):
     if word[0] != word[-1]:
         return False
     return is_palindrome(word[1:-1])
-    pass
+    
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script

@@ -51,7 +51,7 @@ def mult_recursive(value, times):
         return 0
     
     return value + mult_recursive(value, times - 1)
-    pass
+
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script
