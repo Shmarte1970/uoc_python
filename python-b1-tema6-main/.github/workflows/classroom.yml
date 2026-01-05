@@ -1,0 +1,86 @@
+name: Autograding Tests
+on: 
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest    
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'    
+    - name: Display Python version
+      run: python -c "import sys; print(sys.version)"
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: py_6b_ej6b1_test
+      id: py_6b_ej6b1_test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: py_6b_ej6b1_test
+        setup-command: sudo -H pip install -r requirements.txt
+        command: pytest 6b/ej6b1_test.py
+        timeout: 10
+        max-score: 1
+    - name: py_6b_ej6b3_test
+      id: py_6b_ej6b3_test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: py_6b_ej6b3_test
+        setup-command: sudo -H pip install -r requirements.txt
+        command: pytest 6b/ej6b3_test.py
+        timeout: 10
+        max-score: 1
+    - name: py_6b_ej6b2_test
+      id: py_6b_ej6b2_test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: py_6b_ej6b2_test
+        setup-command: sudo -H pip install -r requirements.txt
+        command: pytest 6b/ej6b2_test.py
+        timeout: 10
+        max-score: 1
+    - name: py_6c_ej6c1_test
+      id: py_6c_ej6c1_test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: py_6c_ej6c1_test
+        setup-command: sudo -H pip install -r requirements.txt
+        command: pytest 6c/ej6c1_test.py
+        timeout: 10
+        max-score: 1
+    - name: py_6c_ej6c2_test
+      id: py_6c_ej6c2_test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: py_6c_ej6c2_test
+        setup-command: sudo -H pip install -r requirements.txt
+        command: pytest 6c/ej6c2_test.py
+        timeout: 10
+        max-score: 1
+    - name: py_6c_ej6c3_test
+      id: py_6c_ej6c3_test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: py_6c_ej6c3_test
+        setup-command: sudo -H pip install -r requirements.txt
+        command: pytest 6c/ej6c3_test.py
+        timeout: 10
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        PY_6B_EJ6B1_TEST_RESULTS: "${{steps.py_6b_ej6b1_test.outputs.result}}"
+        PY_6B_EJ6B3_TEST_RESULTS: "${{steps.py_6b_ej6b3_test.outputs.result}}"
+        PY_6B_EJ6B2_TEST_RESULTS: "${{steps.py_6b_ej6b2_test.outputs.result}}"
+        PY_6C_EJ6C1_TEST_RESULTS: "${{steps.py_6c_ej6c1_test.outputs.result}}"
+        PY_6C_EJ6C2_TEST_RESULTS: "${{steps.py_6c_ej6c2_test.outputs.result}}"
+        PY_6C_EJ6C3_TEST_RESULTS: "${{steps.py_6c_ej6c3_test.outputs.result}}"
+      with:
+        runners: py_6b_ej6b1_test,py_6b_ej6b3_test,py_6b_ej6b2_test,py_6c_ej6c1_test,py_6c_ej6c2_test,py_6c_ej6c3_test

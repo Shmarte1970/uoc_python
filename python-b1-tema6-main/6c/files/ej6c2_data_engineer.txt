@@ -1,0 +1,12 @@
+What is a data engineer and why is it relevant in the world?
+
+Data engineering is a discipline that deals with the design, construction, and maintenance of
+systems and solutions for managing and processing large amounts of data. Data engineers are
+responsible for developing scalable and robust infrastructures for data management, as well as
+implementing data pipelines that allow for the extraction, transformation, and loading (ETL) of
+information from various sources.
+
+In the information age, data has become one of the most valuable assets for companies and organizations
+around the world. The ability to process and analyze large volumes of data in real-time is essential for
+informed decision-making and for creating new products and services. Data engineers are crucial in this
+process as they are responsible for ensuring that information is available, reliable, and ready for use.
