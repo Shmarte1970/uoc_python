@@ -203,21 +203,34 @@ class PrepareOrder:
 
             # Cambiar el mensaje si ya hay productos en el pedido
             if len(order.products) > 0:
-                product_id = input("Ingrese el ID del producto (eliminar producto inserta el ID o 'fin' para terminar): ")
+                product_id = input("Ingrese el ID del producto ('0' para eliminar producto o 'fin' para terminar): ")
             else:
                 product_id = input("Ingrese el ID del producto (o 'fin' para terminar): ")
 
             if product_id.lower() == 'fin':
                 break
 
-            # Verificar si el producto está en el pedido actual (para eliminar)
-            removed_product = order.remove(product_id)
+            # Opción para eliminar producto
+            if product_id == '0':
+                if len(order.products) > 0:
+                    # Mostrar productos en el pedido
+                    print("\n--- Productos en el pedido: ---")
+                    for idx, p in enumerate(order.products, 1):
+                        print(f"  {idx}. [{p.id:>4}] {p.name:<30} {p.price:>8.2f} EUR")
+                    print()
 
-            if removed_product:
-                # El producto estaba en el pedido, se eliminó
-                print(f"\nProducto eliminado: {removed_product.name}")
+                    # Pedir el ID del producto a eliminar
+                    remove_id = input("Ingrese el ID del producto a eliminar: ")
+                    removed_product = order.remove(remove_id)
+
+                    if removed_product:
+                        print(f"\nProducto eliminado: {removed_product.name}")
+                    else:
+                        print("\nProducto no encontrado en el pedido.")
+                else:
+                    print("\nEl pedido está vacío. No hay productos para eliminar.")
             else:
-                # El producto no estaba en el pedido, intentar agregarlo
+                # Agregar producto al pedido
                 product = self.findProductById(product_id)
                 if product:
                     order.add(product)
