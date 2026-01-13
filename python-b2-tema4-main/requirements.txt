@@ -1,0 +1,4 @@
+pluggy~=1.0
+pytest~=6.0
+exceptiongroup
+

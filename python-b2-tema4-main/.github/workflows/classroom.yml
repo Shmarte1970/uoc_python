@@ -1,0 +1,40 @@
+name: Autograding Tests
+'on':
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: py_4a_ej4a1_test
+      id: py_4a_ej4a1_test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: py_4a_ej4a1_test
+        setup-command: sudo -H pip install -r requirements.txt
+        command: pytest 4a/ej4a1_test.py
+        timeout: 10
+        max-score: 1
+    - name: py_4c_ej4c1_test
+      id: py_4c_ej4c1_test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: py_4c_ej4c1_test
+        setup-command: sudo -H pip install -r requirements.txt
+        command: pytest 4c/ej4c1_testpy
+        timeout: 10
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        PY_4A_EJ4A1_TEST_RESULTS: "${{steps.py_4a_ej4a1_test.outputs.result}}"
+        PY_4C_EJ4C1_TEST_RESULTS: "${{steps.py_4c_ej4c1_test.outputs.result}}"
+      with:
+        runners: py_4a_ej4a1_test,py_4c_ej4c1_test
