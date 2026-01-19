@@ -1,0 +1,13 @@
+tipo,nombre,especialidad,telefono,direccion,username,password,estado
+doctor,Dr. Juan García,Odontología General,,,juan.garcia,doctor123,
+doctor,Dra. María López,Ortodoncia,,,maria.lopez,doctor123,
+doctor,Dr. Carlos Rodríguez,Endodoncia,,,carlos.rodriguez,doctor123,
+doctor,Dra. Ana Martínez,Periodoncia,,,ana.martinez,doctor123,
+paciente,Pedro Sánchez,,612345678,,pedro.sanchez,paciente123,ACTIVO
+paciente,Laura Fernández,,623456789,,laura.fernandez,paciente123,ACTIVO
+paciente,Miguel Torres,,634567890,,miguel.torres,paciente123,ACTIVO
+paciente,Carmen Ruiz,,645678901,,carmen.ruiz,paciente123,ACTIVO
+paciente,José Moreno,,656789012,,jose.moreno,paciente123,ACTIVO
+centro,Clínica Dental Centro,,,Calle Mayor 10 Madrid,,,
+centro,Clínica Dental Norte,,,Avenida del Norte 25 Madrid,,,
+centro,Clínica Dental Sur,,,Plaza del Sur 5 Madrid,,,

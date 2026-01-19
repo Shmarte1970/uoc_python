@@ -1,0 +1,69 @@
+# Docker Compose para OdontoCare
+# Sistema de gestión de citas dentales con arquitectura de microservicios
+
+version: '3.8'
+
+services:
+  # Microservicio 1: Gestión de Usuarios y Administración
+  servicio_usuarios:
+    build:
+      context: ./servicio_usuarios
+      dockerfile: Dockerfile
+    container_name: odontocare_usuarios
+    ports:
+      - "5001:5001"
+    environment:
+      - FLASK_ENV=production
+      - SECRET_KEY=odontocare-secret-key-2024
+      - JWT_SECRET_KEY=jwt-odontocare-secret
+      - PORT=5001
+    volumes:
+      - usuarios_data:/app/instance
+    networks:
+      - odontocare_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Microservicio 2: Gestión de Citas
+  servicio_citas:
+    build:
+      context: ./servicio_citas
+      dockerfile: Dockerfile
+    container_name: odontocare_citas
+    ports:
+      - "5002:5002"
+    environment:
+      - FLASK_ENV=production
+      - SECRET_KEY=odontocare-secret-key-2024
+      - JWT_SECRET_KEY=jwt-odontocare-secret
+      - PORT=5002
+      - SERVICIO_USUARIOS_URL=http://servicio_usuarios:5001
+    volumes:
+      - citas_data:/app/instance
+    networks:
+      - odontocare_network
+    depends_on:
+      - servicio_usuarios
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+# Volúmenes para persistencia de datos
+volumes:
+  usuarios_data:
+    name: odontocare_usuarios_data
+  citas_data:
+    name: odontocare_citas_data
+
+# Red interna para comunicación entre servicios
+networks:
+  odontocare_network:
+    name: odontocare_network
+    driver: bridge
